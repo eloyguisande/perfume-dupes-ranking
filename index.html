@@ -177,15 +177,16 @@ const COLS=[
  ['pv','€/cal','n',r=>`<td class="n">${fx(r.pv)}</td>`],
  ['s','Dulce','',r=>`<td>${r.s?`<span class="sw"><i style="width:${r.s}%"></i></span>${r.s}`:'<span class="mu">—</span>'}</td>`],
  ['acc','Acordes','',r=>`<td class="acc">${accs(r.acc)}</td>`],
- ['sim','Imita a','',r=>`<td class="sim">${r.oid?`<img loading="lazy" src="https://fimgs.net/mdimg/perfume/375x500.${r.oid}.jpg" alt="">`:''}${r.dud?tip(r.dud)+' ':''}${esc(r.sim)} <span class="mu">${r.sy}${r.sno?'–'+r.sno:''}</span></td>`],
+ ['sim','Imita a','',r=>`<td class="sim">${r.dud?tip(r.dud)+' ':''}${esc(r.sim)} <span class="mu">${r.sy}${r.sno?'–'+r.sno:''}</span></td>`],
  ['p','Amazon.es','n',r=>`<td class="n am">${PUB?buy(r):amz(r)}</td>`],
  ['comp','Compras/mes','n',r=>`<td class="n">${r.comp?r.comp+'+':'<span class="mu">—</span>'}</td>`],
- ['','Pro / contra','',r=>`<td class="pc"><div title="${esc(r.pro)}">✅ ${esc(r.pro)||'—'}</div><div title="${esc(r.con)}">❌ ${esc(r.con)||'—'}</div></td>`]];
+ ['','Pro / contra','',r=>`<td class="pc"><div title="${esc(r.pro)}">✅ ${esc(r.pro)||'—'}</div><div title="${esc(r.con)}">❌ ${esc(r.con)||'—'}</div></td>`],
+ ['','Foto orig.','',r=>`<td class="ph">${r.oid?`<img loading="lazy" src="https://fimgs.net/mdimg/perfume/375x500.${r.oid}.jpg" alt="">`:''}</td>`]];
 COLS.push(['nt','Notino','n',r=>`<td class="n am">${r.nt?`<a class="${r.nt.p*100/(r.nt.ml||100)<=30?'pg':r.nt.p*100/(r.nt.ml||100)<=50?'py':'pr'}" href="${r.nt.u}" target="_blank" title="${fx(r.nt.p*100/(r.nt.ml||100))} € / 100 ml">${fx(r.nt.p)} €</a>${r.nt.ml&&r.nt.ml!==100?` <span class="mu">${r.nt.ml} ml</span>`:''}`:'<span class="mu">—</span>'}</td>`]);
-const DEF=false?[4,3,15,0,2,1,5,16,19,6,7,8,9,10,11,12,13,14,17,18]:[4,3,15,0,2,1,5,16,6,7,8,9,10,11,12,13,14,17,18];
+const DEF=false?[4,3,15,19,0,2,1,5,16,20,6,7,8,9,10,11,12,13,14,17,18]:[4,3,15,19,0,2,1,5,16,6,7,8,9,10,11,12,13,14,17,18];
 if(!false)COLS.pop();
 if(PUB)DEF.splice(DEF.indexOf(17),1);
-const EN={'Perfume':'Perfume','Foto':'Photo','Gén.':'Sex','Origen':'Source','Puntuación':'Score','Nota':'Rating','Votos':'Votes','Lo tienen':'Own it','Dura':'Longevity','Estela':'Sillage','€/cal':'Value','Dulce':'Sweet','Acordes':'Accords','Imita a':'Dupe of','Amazon.es':'Amazon','Pro / contra':'Pros / cons'};
+const EN={'Perfume':'Perfume','Foto':'Photo','Foto orig.':'Original photo','Gén.':'Sex','Origen':'Source','Puntuación':'Score','Nota':'Rating','Votos':'Votes','Lo tienen':'Own it','Dura':'Longevity','Estela':'Sillage','€/cal':'Value','Dulce':'Sweet','Acordes':'Accords','Imita a':'Dupe of','Amazon.es':'Amazon','Pro / contra':'Pros / cons'};
 const TT=t=>LG==='en'?(EN[t]||t):(PUB&&t==='Amazon.es'?'Amazon':t);
 let ord;try{ord=JSON.parse(localStorage.getItem('dupesCols2'));if(!ord||ord.length!==DEF.length)throw 0}catch(e){ord=DEF.slice()}
 let drag=null;
