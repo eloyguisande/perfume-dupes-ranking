@@ -134,15 +134,11 @@ let LG=localStorage.getItem('dupesLg')||(navigator.language.startsWith('es')?'es
 const L=(es,en)=>LG==='en'?en:es;
 function setLg(l){LG=l;localStorage.setItem('dupesLg',l);document.documentElement.lang=l;$('#lg').textContent=l==='en'?'ES':'EN';
  document.querySelectorAll('[data-en]').forEach(e=>{if(!e.dataset.es)e.dataset.es=e.placeholder||e.textContent;const t=l==='en'?e.dataset.en:e.dataset.es;if(e.tagName==='INPUT')e.placeholder=t;else e.textContent=t})}
-// tienda de Amazon según el país del visitante (búsqueda con etiqueta de afiliado)
-const TAGS={es:'elomaquiabelo-21'};
-function store(){const l=navigator.language||'',tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';
- if(/Madrid|Canary|Ceuta/.test(tz)||l==='es-ES')return 'es';if(/Berlin|Vienna|Zurich/.test(tz)||l.startsWith('de'))return 'de';
- if(/Paris|Brussels/.test(tz)||l==='fr-FR')return 'fr';if(/Rome/.test(tz)||l.startsWith('it'))return 'it';
- if(/London|Dublin/.test(tz)||l==='en-GB')return 'co.uk';if(/Toronto|Vancouver|Montreal|Edmonton|Winnipeg|Halifax/.test(tz))return 'ca';return 'com'}
-const ST=store();
-function buy(r){const t=TAGS[ST]?(ST==='es'&&r.am?'?':'&')+'tag='+TAGS[ST]:'',
- u=ST==='es'&&r.am?'https://www.amazon.es/dp/'+r.am.asin+t:'https://www.amazon.'+ST+'/s?k='+encodeURIComponent(r.c+' '+r.n)+t;
+// España → amazon.es con la cuenta española; resto → amazon.com con la de EE. UU.
+// (Global Earning de Amazon redirige solo a la tienda local en CA, UK, DE, FR, IT, NL, PL y SE conservando la etiqueta)
+const ES=/Madrid|Canary|Ceuta/.test(Intl.DateTimeFormat().resolvedOptions().timeZone||'')||navigator.language==='es-ES';
+function buy(r){const q=encodeURIComponent(r.c+' '+r.n),
+ u=!ES?'https://www.amazon.com/s?k='+q+'&tag=nanaruth-20':r.am?'https://www.amazon.es/dp/'+r.am.asin+'?tag=elomaquiabelo-21':'https://www.amazon.es/s?k='+q+'&tag=elomaquiabelo-21';
  return `<a class="buy" href="${u}" target="_blank" rel="sponsored noopener">${L('Ver en Amazon','View on Amazon')}</a>`}
 let key='rk',asc=true;const st={t3:0,t50:0,fa:0,fd:0};
 function amz(r){if(!r.am)return r.c==='Zara'?'<span class="mu">zara.com</span>':'<span class="mu">none</span>';const a=r.am,u='https://www.amazon.es/dp/'+a.asin+'?tag=elomaquiabelo-21',
