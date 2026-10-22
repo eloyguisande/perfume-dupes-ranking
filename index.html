@@ -69,7 +69,8 @@ th.hl{color:#e8c547;background:#2b2818}th.hl.s{color:#ffd84d}
 :root[lang=en] .es,:root[lang=es] .en{display:none}
 .sim img{width:30px;height:40px;object-fit:contain;background:#fff;border-radius:3px;float:left;margin-right:6px;transition:transform .15s;transform-origin:left center}
 .sim img:hover{transform:scale(2.6);position:relative;z-index:5}
-.buy{display:inline-block;padding:4px 10px;border-radius:6px;background:#f0a040;color:#111!important;font-weight:600;text-decoration:none;white-space:nowrap}
+.buy{display:inline-block;padding:2px 8px;border-radius:5px;border:1px solid var(--ln);color:var(--tx)!important;font-size:12px;text-decoration:none;white-space:nowrap}
+.buy:hover{border-color:var(--ac);color:var(--ac)!important}
 footer{padding:14px 32px 24px;color:var(--mu);font-size:12px}footer a{color:var(--ac)}
 td.am{white-space:nowrap}th{padding:10px 6px}td{padding:8px 6px}
 @media(max-width:700px){header{padding:14px 12px 8px}.bar{padding:8px 12px}.wrap{margin:0 4px}.bar input[type=search]{width:100%}h1{font-size:19px}footer{padding:12px}}
@@ -188,7 +189,7 @@ if(!false)COLS.pop();
 if(PUB)DEF.splice(DEF.indexOf(17),1);
 const EN={'Perfume':'Perfume','Foto':'Photo','Foto orig.':'Original photo','Gén.':'Sex','Origen':'Source','Puntuación':'Score','Nota':'Rating','Votos':'Votes','Lo tienen':'Own it','Dura':'Longevity','Estela':'Sillage','€/cal':'Value','Dulce':'Sweet','Acordes':'Accords','Imita a':'Dupe of','Amazon.es':'Amazon','Pro / contra':'Pros / cons'};
 const TT=t=>LG==='en'?(EN[t]||t):(PUB&&t==='Amazon.es'?'Amazon':t);
-let ord;try{ord=JSON.parse(localStorage.getItem('dupesCols2'));if(!ord||ord.length!==DEF.length)throw 0}catch(e){ord=DEF.slice()}
+let ord;try{ord=JSON.parse(localStorage.getItem('dupesCols2'));if(!ord||ord.length!==DEF.length||ord.some(i=>!DEF.includes(i)))throw 0}catch(e){ord=DEF.slice()}
 let drag=null;
 // anchos de columna a mano (por columna, no por posición)
 let W;try{W=JSON.parse(localStorage.getItem('dupesW'))||{}}catch(e){W={}}
