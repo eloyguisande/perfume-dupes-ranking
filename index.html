@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Fragrance Addict has moved</title>
+<link rel="canonical" href="https://eloyguisande.github.io/fragrance-addict/">
+<script>
+// Web vieja (repo antiguo) → /fragrance-addict/… conservando ruta, ?query y #; las rutas viejas se renombran a inspired-by/ y best-value/.
+(function(){
+  var p = location.pathname.replace(/^\/perfume-[a-z]+-ranking(?=\/|$)/, "") || "/";
+  p = p.replace(/^(\/es)?\/cheap-du[p]es(?=\/|$)/, "$1/best-value").replace(/^(\/es)?\/du[p]es(?=\/|$)/, "$1/inspired-by");
+  var u = "https://eloyguisande.github.io/fragrance-addict" + p + location.search + location.hash;
+  location.replace(u);
+  document.addEventListener("DOMContentLoaded", function(){ var a = document.getElementById("go"); if (a) { a.href = u; } });
+})();
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=https://eloyguisande.github.io/fragrance-addict/"></noscript>
+<meta http-equiv="refresh" content="3; url=https://eloyguisande.github.io/fragrance-addict/">
+<style>body{background:#111317;color:#e8e6e3;font:16px/1.5 system-ui,sans-serif;padding:3em 1.5em}a{color:#5aaee8}</style>
+</head><body><p>This site moved to <a id="go" href="https://eloyguisande.github.io/fragrance-addict/">eloyguisande.github.io/fragrance-addict</a>.</p></body></html>
